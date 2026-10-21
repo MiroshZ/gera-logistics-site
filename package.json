@@ -1,0 +1,48 @@
+{
+  "name": "gera-logistics-site",
+  "version": "1.0.0",
+  "description": "Локальный сайт ООО «ГЕРА» на Next.js и Payload CMS",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "cross-env NODE_OPTIONS=\"--no-deprecation --max-old-space-size=8000\" next build",
+    "dev": "cross-env NODE_OPTIONS=--no-deprecation next dev",
+    "local": "node scripts/start-local.mjs",
+    "db:up": "docker compose up -d db",
+    "db:down": "docker compose down",
+    "seed": "cross-env NODE_OPTIONS=--no-deprecation tsx scripts/seed.ts",
+    "generate:importmap": "cross-env NODE_OPTIONS=--no-deprecation payload generate:importmap",
+    "generate:types": "cross-env NODE_OPTIONS=--no-deprecation payload generate:types",
+    "lint": "cross-env NODE_OPTIONS=--no-deprecation eslint .",
+    "payload": "cross-env NODE_OPTIONS=--no-deprecation payload",
+    "start": "cross-env NODE_OPTIONS=--no-deprecation next start"
+  },
+  "dependencies": {
+    "@payloadcms/db-postgres": "3.91.0",
+    "@payloadcms/next": "3.91.0",
+    "@payloadcms/richtext-lexical": "3.91.0",
+    "@payloadcms/ui": "3.91.0",
+    "cross-env": "^7.0.3",
+    "dotenv": "16.4.7",
+    "graphql": "^16.8.1",
+    "next": "16.3.3",
+    "nodemailer": "^7.0.10",
+    "payload": "3.91.0",
+    "react": "19.2.6",
+    "react-dom": "19.2.6",
+    "sharp": "0.35.4"
+  },
+  "devDependencies": {
+    "@types/node": "22.19.9",
+    "@types/nodemailer": "^8.0.2",
+    "@types/react": "19.2.14",
+    "@types/react-dom": "19.2.3",
+    "eslint": "^9.16.0",
+    "eslint-config-next": "16.3.3",
+    "tsx": "4.23.15",
+    "typescript": "5.7.3"
+  },
+  "engines": {
+    "node": "^20.18.1 || ^22.13.0 || >=24"
+  }
+}
