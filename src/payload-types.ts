@@ -873,6 +873,18 @@ export interface SiteSetting {
   tagline?: string | null;
   publicPhone?: string | null;
   publicEmail?: string | null;
+  additionalEmail?: string | null;
+  companyDetails?: {
+    legalName?: string | null;
+    legalAddress?: string | null;
+    postalAddress?: string | null;
+    directorName?: string | null;
+    inn?: string | null;
+    kpp?: string | null;
+    ogrn?: string | null;
+    okpo?: string | null;
+    edoId?: string | null;
+  };
   socialLinks?:
     | {
         label: string;
@@ -905,6 +917,20 @@ export interface SiteSettingsSelect<T extends boolean = true> {
   tagline?: T;
   publicPhone?: T;
   publicEmail?: T;
+  additionalEmail?: T;
+  companyDetails?:
+    | T
+    | {
+        legalName?: T;
+        legalAddress?: T;
+        postalAddress?: T;
+        directorName?: T;
+        inn?: T;
+        kpp?: T;
+        ogrn?: T;
+        okpo?: T;
+        edoId?: T;
+      };
   socialLinks?:
     | T
     | {

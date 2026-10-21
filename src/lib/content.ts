@@ -56,6 +56,18 @@ export type SiteSettingsRecord = {
   tagline?: string | null
   publicPhone?: string | null
   publicEmail?: string | null
+  additionalEmail?: string | null
+  companyDetails?: {
+    legalName?: string | null
+    legalAddress?: string | null
+    postalAddress?: string | null
+    directorName?: string | null
+    inn?: string | null
+    kpp?: string | null
+    ogrn?: string | null
+    okpo?: string | null
+    edoId?: string | null
+  } | null
   socialLinks?: { label: string; url: string }[] | null
   footerNote?: string | null
 }

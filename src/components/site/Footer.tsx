@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import { Brand } from '@/components/site/Brand'
 import type { SiteSettingsRecord } from '@/lib/content'
 
 export function Footer({ settings }: { settings: SiteSettingsRecord }) {
@@ -7,8 +8,8 @@ export function Footer({ settings }: { settings: SiteSettingsRecord }) {
     <footer className="site-footer">
       <div className="footer-top">
         <div className="footer-brand">
-          <Link className="brand brand--light" href="/ru">
-            <span className="brand__mark">Г</span><span className="brand__word">{name}</span>
+          <Link className="brand brand--light" href="/ru" aria-label="GERA — на главную">
+            <Brand />
           </Link>
           <p>{settings.footerNote || 'Складской терминал, контейнерный терминал и автоперевозки.'}</p>
         </div>
@@ -29,6 +30,7 @@ export function Footer({ settings }: { settings: SiteSettingsRecord }) {
           <span className="footer-label">Связаться</span>
           {settings.publicPhone ? <a href={`tel:${settings.publicPhone.replace(/[^+\d]/g, '')}`}>{settings.publicPhone}</a> : null}
           {settings.publicEmail ? <a href={`mailto:${settings.publicEmail}`}>{settings.publicEmail}</a> : null}
+          {settings.additionalEmail ? <a href={`mailto:${settings.additionalEmail}`}>{settings.additionalEmail}</a> : null}
           <Link className="footer-contact__link" href="/ru/contacts#request">Написать нам <span aria-hidden="true">↗</span></Link>
         </div>
       </div>

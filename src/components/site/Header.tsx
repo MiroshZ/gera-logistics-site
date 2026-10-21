@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import { Brand } from '@/components/site/Brand'
 
 const links = [
   { href: '/ru/terminals', label: 'Терминалы' },
@@ -12,10 +13,8 @@ const links = [
 export function Header() {
   return (
     <header className="site-header">
-      <Link className="brand" href="/ru" aria-label="ГЕРА — на главную">
-        <span className="brand__mark">Г</span>
-        <span className="brand__word">ГЕРА</span>
-        <span className="brand__descriptor">ТЕРМИНАЛЫ<br />И ПЕРЕВОЗКИ</span>
+      <Link className="brand" href="/ru" aria-label="GERA — на главную">
+        <Brand />
       </Link>
       <nav className="desktop-nav" aria-label="Основная навигация">
         {links.map((link) => <Link key={link.href} href={link.href}>{link.label}</Link>)}

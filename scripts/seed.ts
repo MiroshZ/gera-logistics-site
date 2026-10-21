@@ -2,7 +2,7 @@ import 'dotenv/config'
 import path from 'node:path'
 import config from '../src/payload.config'
 import { getPayload } from 'payload'
-import type { Page, Terminal } from '../src/payload-types'
+import type { Page, SiteSetting, Terminal } from '../src/payload-types'
 
 const payload = await getPayload({ config: await config })
 
@@ -45,23 +45,55 @@ for (const item of mediaSpecs) {
 }
 
 const terminalSpecs = [
-  { name: 'Складской терминал', slug: 'warehouse', type: 'warehouse', description: 'Складское хранение и обработка грузов.', photos: mediaRecords.map((media) => ({ image: media.id, caption: media.caption })) },
+  { name: 'Складской терминал', slug: 'warehouse', type: 'warehouse', description: 'Складское хранение и обработка грузов.', address: { street: 'ул. Заречная, д. 47, пом. 3', city: '690054, Приморский край, г. Владивосток' }, contactPhone: '8-914-690-07-20', contactEmail: 'truck.gera@mail.ru', photos: mediaRecords.map((media) => ({ image: media.id, caption: media.caption })) },
   { name: 'Контейнерный терминал', slug: 'container', type: 'container', description: 'Отдельный объект компании, предназначенный только для работы с контейнерами.' },
-] satisfies Pick<Terminal, 'name' | 'slug' | 'type' | 'description' | 'photos'>[]
+] satisfies Pick<Terminal, 'name' | 'slug' | 'type' | 'description' | 'photos' | 'address' | 'contactPhone' | 'contactEmail'>[]
 
 for (const terminal of terminalSpecs) {
   const found = await payload.find({ collection: 'terminals', where: { slug: { equals: terminal.slug } }, limit: 1, overrideAccess: true })
   if (!found.docs.length) {
     await payload.create({ collection: 'terminals', locale: 'ru', overrideAccess: true, data: { ...terminal, _status: 'published' } })
     console.info(`Создан терминал: ${terminal.name}`)
+  } else if (terminal.slug === 'warehouse') {
+    const existing = found.docs[0]
+    const address = existing.address ?? {}
+    const update: Partial<Terminal> = {}
+    if (!address.street || !address.city) update.address = { ...address, ...terminal.address }
+    if (!existing.contactPhone) update.contactPhone = terminal.contactPhone
+    if (!existing.contactEmail) update.contactEmail = terminal.contactEmail
+    if (Object.keys(update).length) {
+      await payload.update({ collection: 'terminals', id: existing.id, locale: 'ru', overrideAccess: true, data: update })
+      console.info(`Обновлены подтверждённые контакты и адрес: ${terminal.name}`)
+    }
   }
 }
 
 const siteSettings = await payload.findGlobal({ slug: 'site-settings', locale: 'ru', overrideAccess: true })
-if (!siteSettings.companyName) {
-  await payload.updateGlobal({ slug: 'site-settings', locale: 'ru', overrideAccess: true, data: { companyName: 'ГЕРА', tagline: 'Терминалы и перевозки для бизнеса' } })
+const companyDetailsDefaults = {
+  legalName: 'Общество с ограниченной ответственностью «Гера»',
+  legalAddress: '690054, Россия, Приморский край, г. Владивосток, ул. Заречная, д. 47, пом. 3',
+  postalAddress: '690021, Россия, Приморский край, г. Владивосток, ул. Запорожская, д. 77, блок 840',
+  directorName: 'Корец Юрий Павлович',
+  inn: '2543031372',
+  ogrn: '1132543015527',
+  okpo: '28806130',
+  edoId: '2AE134BEA92-DCE7-4CCE-89DA-F620B7D08BEC',
+} satisfies NonNullable<SiteSetting['companyDetails']>
+const currentCompanyDetails = siteSettings.companyDetails ?? {}
+const companyDetailsToSave = Object.fromEntries(
+  Object.entries(companyDetailsDefaults).filter(([key]) => !currentCompanyDetails[key as keyof typeof companyDetailsDefaults]),
+) as NonNullable<SiteSetting['companyDetails']>
+const settingsUpdate: Partial<SiteSetting> = {}
+if (!siteSettings.companyName) settingsUpdate.companyName = 'ГЕРА'
+if (!siteSettings.tagline) settingsUpdate.tagline = 'Терминалы и перевозки для бизнеса'
+if (!siteSettings.publicPhone) settingsUpdate.publicPhone = '8-914-690-07-20'
+if (!siteSettings.publicEmail) settingsUpdate.publicEmail = 'truck.gera@mail.ru'
+if (!siteSettings.additionalEmail) settingsUpdate.additionalEmail = '4232708800@mail.ru'
+if (Object.keys(companyDetailsToSave).length) settingsUpdate.companyDetails = { ...currentCompanyDetails, ...companyDetailsToSave }
+if (Object.keys(settingsUpdate).length) {
+  await payload.updateGlobal({ slug: 'site-settings', locale: 'ru', overrideAccess: true, data: settingsUpdate })
 }
 
-console.info('Локальный контент подготовлен. Тарифы, маршруты, параметры и контакты не заполнены неподтверждёнными данными.')
+console.info('Локальный контент подготовлен. Тарифы, маршруты, характеристики контейнерного терминала и режим работы не заполнены без подтверждения.')
 await payload.destroy()
 process.exit(0)
