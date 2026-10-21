@@ -1,6 +1,7 @@
 import type { ReactNode } from 'react'
 import { Footer } from '@/components/site/Footer'
 import { Header } from '@/components/site/Header'
+import { ScrollReveal } from '@/components/site/ScrollReveal'
 import { getSiteSettings } from '@/lib/content'
 
 export async function SiteLayout({ children }: { children: ReactNode }) {
@@ -10,6 +11,7 @@ export async function SiteLayout({ children }: { children: ReactNode }) {
       <a className="skip-link" href="#main">Перейти к содержанию</a>
       <Header />
       <div id="main">{children}</div>
+      <ScrollReveal />
       <Footer settings={settings} />
     </>
   )
