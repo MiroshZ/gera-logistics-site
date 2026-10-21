@@ -63,3 +63,5 @@ if (!siteSettings.companyName) {
 }
 
 console.info('Локальный контент подготовлен. Тарифы, маршруты, параметры и контакты не заполнены неподтверждёнными данными.')
+await payload.destroy()
+process.exit(0)
