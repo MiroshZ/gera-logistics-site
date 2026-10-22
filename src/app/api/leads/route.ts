@@ -3,13 +3,14 @@ import config from '@/payload.config'
 import { getPayload } from 'payload'
 import { createTransport } from 'nodemailer'
 import { randomUUID } from 'node:crypto'
+import { CONSENT_VERSION } from '@/lib/legal'
 
 export const runtime = 'nodejs'
 
 const allowedServices = ['warehouse', 'container', 'transport'] as const
 type LeadService = (typeof allowedServices)[number]
 const allowedServiceSet: ReadonlySet<string> = new Set(allowedServices)
-const attemptsByClient = new Map<string, number[]>()
+const attemptsByClient = new Map<string, { times: number[]; cleanup: ReturnType<typeof setTimeout> }>()
 const limitWindowMs = 10 * 60 * 1000
 const maxAttempts = 5
 
@@ -18,13 +19,17 @@ function text(value: unknown, max = 300): string {
 }
 
 function limitClient(client: string, now: number): boolean {
-  const recent = (attemptsByClient.get(client) || []).filter((time) => now - time < limitWindowMs)
+  const previous = attemptsByClient.get(client)
+  if (previous) clearTimeout(previous.cleanup)
+  const recent = (previous?.times || []).filter((time) => now - time < limitWindowMs)
+  const cleanup = setTimeout(() => attemptsByClient.delete(client), limitWindowMs)
+  cleanup.unref()
   if (recent.length >= maxAttempts) {
-    attemptsByClient.set(client, recent)
+    attemptsByClient.set(client, { times: recent, cleanup })
     return false
   }
   recent.push(now)
-  attemptsByClient.set(client, recent)
+  attemptsByClient.set(client, { times: recent, cleanup })
   return true
 }
 
@@ -100,7 +105,7 @@ export async function POST(request: NextRequest) {
       desiredDate: text(body.desiredDate, 80),
       description,
       consentAccepted: true,
-      consentVersion: 'local-draft-2026-10',
+      consentVersion: CONSENT_VERSION,
       sourcePage: text(body.sourcePage, 180) || '/ru/contacts',
       locale: 'ru',
       notificationStatus: 'pending',

@@ -25,7 +25,7 @@ const revealTargets = [
   '.request-section__intro',
   '.request-section .lead-form',
   '.empty-state',
-  '.privacy-draft',
+  '.legal-document > section',
 ].join(',')
 
 export function ScrollReveal() {

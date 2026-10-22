@@ -31,7 +31,9 @@ export function Footer({ settings }: { settings: SiteSettingsRecord }) {
           <Link href="/ru/about">О компании</Link>
           <Link href="/ru/fleet">Автопарк</Link>
           <Link href="/ru/contacts">Контакты</Link>
-          <Link href="/ru/privacy">Обработка данных</Link>
+          <Link href="/ru/privacy">Политика обработки данных</Link>
+          <Link href="/ru/consent">Согласие на обработку данных</Link>
+          <Link href="/ru/terms">Использование сайта</Link>
         </div>
         <div className="footer-contact">
           <span className="footer-label">Связаться</span>
@@ -43,7 +45,7 @@ export function Footer({ settings }: { settings: SiteSettingsRecord }) {
         </div>
       </div>
       <div className="footer-bottom">
-        <span>© ООО «{name}»</span>
+        <span>© {new Date().getFullYear()} ООО «{name}». Все права защищены.<br /><small>Копирование материалов без разрешения запрещено.</small></span>
         <span>Информация на сайте обновляется компанией</span>
         <Link href="/admin">Вход для сотрудников <span aria-hidden="true">↗</span></Link>
       </div>

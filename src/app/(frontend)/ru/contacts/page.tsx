@@ -52,7 +52,7 @@ export default async function ContactsPage() {
         </dl>
       </section> : null}
       <LeadForm defaultServices={[]} sourcePage="/ru/contacts" />
-      <p className="contact-privacy-note">Перед публичным запуском компании нужно добавить утверждённую политику обработки данных и окончательный текст согласия. <Link href="/ru/privacy">Статус страницы обработки данных ↗</Link></p>
+      <p className="contact-privacy-note">При отправке заявки действует <Link href="/ru/consent">согласие на обработку персональных данных</Link>. Порядок работы с ними описан в <Link href="/ru/privacy">Политике обработки персональных данных</Link>.</p>
     </main>
   )
 }
