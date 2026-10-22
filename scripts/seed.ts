@@ -86,6 +86,7 @@ const companyDetailsToSave = Object.fromEntries(
 const settingsUpdate: Partial<SiteSetting> = {}
 if (!siteSettings.companyName) settingsUpdate.companyName = 'ГЕРА'
 if (!siteSettings.tagline) settingsUpdate.tagline = 'Терминалы и перевозки для бизнеса'
+if (!siteSettings.warehousePhone) settingsUpdate.warehousePhone = siteSettings.publicPhone || '8-914-690-07-20'
 if (!siteSettings.publicPhone) settingsUpdate.publicPhone = '8-914-690-07-20'
 if (!siteSettings.publicEmail) settingsUpdate.publicEmail = 'truck.gera@mail.ru'
 if (!siteSettings.additionalEmail) settingsUpdate.additionalEmail = '4232708800@mail.ru'

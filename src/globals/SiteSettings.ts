@@ -8,7 +8,9 @@ export const SiteSettings: GlobalConfig = {
   fields: [
     { name: 'companyName', label: 'Название компании', type: 'text', defaultValue: 'ГЕРА' },
     { name: 'tagline', label: 'Короткое описание', type: 'text', localized: true },
-    { name: 'publicPhone', label: 'Телефон для посетителей', type: 'text' },
+    { name: 'warehousePhone', label: 'Телефон складского терминала', type: 'text', admin: { description: 'Показывается рядом с контактами склада. Если оставить поле пустым, используется телефон, указанный в карточке терминала.' } },
+    { name: 'transportPhone', label: 'Телефон автоперевозок', type: 'text', admin: { description: 'Показывается отдельно для направления автоперевозок. Пустое поле не публикуется.' } },
+    { name: 'publicPhone', label: 'Общий телефон для посетителей', type: 'text' },
     { name: 'publicEmail', label: 'Почта для посетителей', type: 'email' },
     { name: 'additionalEmail', label: 'Дополнительная почта', type: 'email' },
     {

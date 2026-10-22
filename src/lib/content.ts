@@ -54,6 +54,8 @@ export type TariffRecord = { id: number; title: string; category: 'warehouse' | 
 export type SiteSettingsRecord = {
   companyName?: string | null
   tagline?: string | null
+  warehousePhone?: string | null
+  transportPhone?: string | null
   publicPhone?: string | null
   publicEmail?: string | null
   additionalEmail?: string | null

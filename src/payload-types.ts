@@ -871,6 +871,14 @@ export interface SiteSetting {
   id: number;
   companyName?: string | null;
   tagline?: string | null;
+  /**
+   * Показывается рядом с контактами склада. Если оставить поле пустым, используется телефон, указанный в карточке терминала.
+   */
+  warehousePhone?: string | null;
+  /**
+   * Показывается отдельно для направления автоперевозок. Пустое поле не публикуется.
+   */
+  transportPhone?: string | null;
   publicPhone?: string | null;
   publicEmail?: string | null;
   additionalEmail?: string | null;
@@ -915,6 +923,8 @@ export interface EmailSetting {
 export interface SiteSettingsSelect<T extends boolean = true> {
   companyName?: T;
   tagline?: T;
+  warehousePhone?: T;
+  transportPhone?: T;
   publicPhone?: T;
   publicEmail?: T;
   additionalEmail?: T;

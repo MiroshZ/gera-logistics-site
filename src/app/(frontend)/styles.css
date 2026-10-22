@@ -185,6 +185,8 @@ img { max-width: 100%; }
 .footer-label { margin-bottom: 8px; color: #a9a9a9; font-size: 9px; font-weight: 800; letter-spacing: .16em; }
 .footer-links a, .footer-contact a { color: #eeeeee; font-size: 11px; transition: color .2s ease; }
 .footer-links a:hover, .footer-contact a:hover { color: #ff9b5e; }
+.footer-contact__phone { display: flex; flex-direction: column; gap: 3px; }
+.footer-contact__phone > span { color: #a9a9a9; font-size: 9px; }
 .footer-contact__link { margin-top: 6px; font-weight: 800; }
 .footer-bottom { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding-top: 15px; padding-bottom: 18px; border-top: 1px solid rgba(255,255,255,.15); color: #a5a5a5; font-size: 9px; }
 .footer-bottom a { color: #dedede; }

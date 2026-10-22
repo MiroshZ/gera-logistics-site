@@ -4,6 +4,13 @@ import type { SiteSettingsRecord } from '@/lib/content'
 
 export function Footer({ settings }: { settings: SiteSettingsRecord }) {
   const name = settings.companyName || 'ГЕРА'
+  const departmentPhones = [
+    { label: 'Складской терминал', number: settings.warehousePhone },
+    { label: 'Автоперевозки', number: settings.transportPhone },
+  ].filter((phone): phone is { label: string; number: string } => Boolean(phone.number))
+  const generalPhone = settings.publicPhone && !departmentPhones.some((phone) => phone.number === settings.publicPhone)
+    ? settings.publicPhone
+    : null
   return (
     <footer className="site-footer">
       <div className="footer-top">
@@ -28,7 +35,8 @@ export function Footer({ settings }: { settings: SiteSettingsRecord }) {
         </div>
         <div className="footer-contact">
           <span className="footer-label">Связаться</span>
-          {settings.publicPhone ? <a href={`tel:${settings.publicPhone.replace(/[^+\d]/g, '')}`}>{settings.publicPhone}</a> : null}
+          {departmentPhones.map(({ label, number }) => <div className="footer-contact__phone" key={label}><span>{label}</span><a href={`tel:${number.replace(/[^+\d]/g, '')}`}>{number}</a></div>)}
+          {generalPhone ? <div className="footer-contact__phone"><span>Общий телефон</span><a href={`tel:${generalPhone.replace(/[^+\d]/g, '')}`}>{generalPhone}</a></div> : null}
           {settings.publicEmail ? <a href={`mailto:${settings.publicEmail}`}>{settings.publicEmail}</a> : null}
           {settings.additionalEmail ? <a href={`mailto:${settings.additionalEmail}`}>{settings.additionalEmail}</a> : null}
           <Link className="footer-contact__link" href="/ru/contacts#request">Написать нам <span aria-hidden="true">↗</span></Link>
