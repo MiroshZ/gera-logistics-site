@@ -2,6 +2,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { LeadForm } from '@/components/site/LeadForm'
 import { getPage, getTerminals } from '@/lib/content'
+import { getContainerPhotos } from '@/lib/terminal-photos'
 
 export const dynamic = 'force-dynamic'
 
@@ -13,9 +14,11 @@ function ImageUrl({ value, fallback }: { value?: unknown; fallback: string }) {
 export default async function HomePage() {
   const [page, terminals] = await Promise.all([getPage('home'), getTerminals()])
   const warehouse = terminals.find((terminal) => terminal.slug === 'warehouse')
+  const container = terminals.find((terminal) => terminal.slug === 'container')
   const warehousePhoto = warehouse?.photos?.[0]?.image
   const heroImage = ImageUrl({ value: warehousePhoto, fallback: '/images/warehouse/loading-bay.jpg' })
   const rackingImage = '/images/warehouse/racking.jpg'
+  const containerPhoto = getContainerPhotos(container)[0]
 
   return (
     <main className="site-page home-page">
@@ -57,7 +60,7 @@ export default async function HomePage() {
             </div>
           </Link>
           <Link className="direction-card direction-card--container" href="/ru/terminals/container">
-            <div className="container-art" aria-hidden="true"><span /><span /><span /><i /><i /><i /></div>
+            <div className="direction-card__photo"><Image src={containerPhoto.src} alt={containerPhoto.alt} fill sizes="(max-width: 760px) 100vw, 33vw" /></div>
             <div className="direction-card__body">
               <span className="direction-card__index">02 / ОБЪЕКТ</span>
               <h3>Контейнерный<br />терминал</h3>

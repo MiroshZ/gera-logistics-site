@@ -44,9 +44,28 @@ for (const item of mediaSpecs) {
   mediaRecords.push({ id: Number(record.id), caption: item.caption })
 }
 
+const containerPhotoSpecs = [
+  { alt: 'Ричстакер и площадка контейнерного терминала', file: 'terminal-overview.webp', caption: 'Площадка терминала' },
+  { alt: 'Работа на площадке контейнерного терминала', file: 'workyard.webp', caption: 'Работа на площадке' },
+  { alt: 'Малые погрузчики на территории терминала', file: 'forklifts.webp', caption: 'Погрузчики' },
+  { alt: 'Кран на территории терминала', file: 'crane.webp', caption: 'Подъёмная техника' },
+]
+const containerMediaRecords: { id: number; caption: string }[] = []
+
+for (const item of containerPhotoSpecs) {
+  const found = await payload.find({ collection: 'media', where: { alt: { equals: item.alt } }, limit: 1, overrideAccess: true })
+  const record = found.docs[0] || await payload.create({
+    collection: 'media',
+    overrideAccess: true,
+    data: { alt: item.alt },
+    filePath: path.resolve(process.cwd(), 'public/images/container', item.file),
+  })
+  containerMediaRecords.push({ id: Number(record.id), caption: item.caption })
+}
+
 const terminalSpecs = [
   { name: 'Складской терминал', slug: 'warehouse', type: 'warehouse', description: 'Складское хранение и обработка грузов.', address: { street: 'ул. Заречная, д. 47, пом. 3', city: '690054, Приморский край, г. Владивосток' }, contactPhone: '8-914-690-07-20', contactEmail: 'truck.gera@mail.ru', photos: mediaRecords.map((media) => ({ image: media.id, caption: media.caption })) },
-  { name: 'Контейнерный терминал', slug: 'container', type: 'container', description: 'Отдельный объект компании, предназначенный только для работы с контейнерами.' },
+  { name: 'Контейнерный терминал', slug: 'container', type: 'container', description: 'Отдельный объект компании, предназначенный только для работы с контейнерами.', photos: containerMediaRecords.map((media) => ({ image: media.id, caption: media.caption })) },
 ] satisfies Pick<Terminal, 'name' | 'slug' | 'type' | 'description' | 'photos' | 'address' | 'contactPhone' | 'contactEmail'>[]
 
 for (const terminal of terminalSpecs) {
@@ -54,16 +73,19 @@ for (const terminal of terminalSpecs) {
   if (!found.docs.length) {
     await payload.create({ collection: 'terminals', locale: 'ru', overrideAccess: true, data: { ...terminal, _status: 'published' } })
     console.info(`Создан терминал: ${terminal.name}`)
-  } else if (terminal.slug === 'warehouse') {
+  } else {
     const existing = found.docs[0]
-    const address = existing.address ?? {}
     const update: Partial<Terminal> = {}
-    if (!address.street || !address.city) update.address = { ...address, ...terminal.address }
-    if (!existing.contactPhone) update.contactPhone = terminal.contactPhone
-    if (!existing.contactEmail) update.contactEmail = terminal.contactEmail
+    if (terminal.photos?.length && !existing.photos?.length) update.photos = terminal.photos
+    if (terminal.slug === 'warehouse') {
+      const address = existing.address ?? {}
+      if (!address.street || !address.city) update.address = { ...address, ...terminal.address }
+      if (!existing.contactPhone) update.contactPhone = terminal.contactPhone
+      if (!existing.contactEmail) update.contactEmail = terminal.contactEmail
+    }
     if (Object.keys(update).length) {
       await payload.update({ collection: 'terminals', id: existing.id, locale: 'ru', overrideAccess: true, data: update })
-      console.info(`Обновлены подтверждённые контакты и адрес: ${terminal.name}`)
+      console.info(`Обновлены данные терминала: ${terminal.name}`)
     }
   }
 }
