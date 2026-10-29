@@ -27,8 +27,8 @@ for (const page of pages) {
 }
 
 const mediaSpecs = [
-  { alt: 'Погрузочная зона складского терминала', file: 'loading-bay.jpg', caption: 'Погрузочная зона' },
-  { alt: 'Стеллажи складского терминала', file: 'racking.jpg', caption: 'Стеллажи' },
+  { alt: 'Погрузочная зона складского терминала — обновлённое фото', file: 'loading-bay-enhanced.webp', caption: 'Погрузочная зона' },
+  { alt: 'Стеллажи складского терминала — обновлённое фото', file: 'racking-enhanced.webp', caption: 'Стеллажи' },
   { alt: 'Складское помещение терминала', file: 'storage-floor.jpg', caption: 'Складское помещение' },
 ]
 const mediaRecords: { id: number; caption: string }[] = []
@@ -45,7 +45,7 @@ for (const item of mediaSpecs) {
 }
 
 const containerPhotoSpecs = [
-  { alt: 'Ричстакер и площадка контейнерного терминала', file: 'terminal-overview.webp', caption: 'Площадка терминала' },
+  { alt: 'Площадка контейнерного терминала', file: 'terminal-overview-enhanced.webp', caption: 'Площадка терминала' },
   { alt: 'Ричстакер на контейнерном терминале', file: 'reachstacker.webp', caption: 'Ричстакер' },
   { alt: 'Малые погрузчики на контейнерном терминале', file: 'small-forklifts.webp', caption: 'Погрузчики' },
   { alt: 'Кран на территории терминала', file: 'crane.webp', caption: 'Подъёмная техника' },

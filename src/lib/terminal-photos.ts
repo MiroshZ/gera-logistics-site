@@ -3,7 +3,7 @@ import type { TerminalRecord } from '@/lib/content'
 export type DisplayPhoto = { src: string; alt: string; caption: string }
 
 const containerFallbackPhotos: DisplayPhoto[] = [
-  { src: '/images/container/terminal-overview.webp', alt: 'Ричстакер и площадка контейнерного терминала', caption: 'Площадка терминала' },
+  { src: '/images/container/terminal-overview-enhanced.webp', alt: 'Площадка контейнерного терминала', caption: 'Площадка терминала' },
   { src: '/images/container/reachstacker.webp', alt: 'Ричстакер на контейнерном терминале', caption: 'Ричстакер' },
   { src: '/images/container/small-forklifts.webp', alt: 'Малые погрузчики на контейнерном терминале', caption: 'Погрузчики' },
   { src: '/images/container/crane.webp', alt: 'Кран на территории терминала', caption: 'Подъёмная техника' },

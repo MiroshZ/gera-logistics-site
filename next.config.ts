@@ -39,6 +39,9 @@ const nextConfig: NextConfig = {
       {
         pathname: '/images/warehouse/**',
       },
+      {
+        pathname: '/images/container/**',
+      },
     ],
   },
   webpack: (webpackConfig) => {

@@ -16,7 +16,7 @@ export default async function TerminalsPage() {
       <PageIntro page={page} />
       <section className="terminal-list">
         <article className="terminal-feature">
-          <div className="terminal-feature__image"><Image src="/images/warehouse/loading-bay.jpg" alt="Погрузочная зона складского терминала" fill sizes="(max-width: 760px) 100vw, 50vw" /></div>
+          <div className="terminal-feature__image"><Image src="/images/warehouse/loading-bay-enhanced.webp" alt="Погрузочная зона складского терминала" fill sizes="(max-width: 760px) 100vw, 50vw" /></div>
           <div className="terminal-feature__content"><span className="direction-card__index">ОБЪЕКТ / 01</span><h2>{warehouse?.name || 'Складской терминал'}</h2><p>{warehouse?.description || 'Складское хранение и обработка грузов. Параметры объекта публикуются после проверки.'}</p><Link className="button button--dark" href="/terminals/warehouse">Подробнее <span aria-hidden="true">↗</span></Link></div>
         </article>
         <article className="terminal-feature terminal-feature--container">

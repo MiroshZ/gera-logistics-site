@@ -14,8 +14,8 @@ export async function HomePage() {
   const warehouse = terminals.find((terminal) => terminal.slug === 'warehouse')
   const container = terminals.find((terminal) => terminal.slug === 'container')
   const warehousePhoto = warehouse?.photos?.[0]?.image
-  const heroImage = ImageUrl({ value: warehousePhoto, fallback: '/images/warehouse/loading-bay.jpg' })
-  const rackingImage = '/images/warehouse/racking.jpg'
+  const heroImage = ImageUrl({ value: warehousePhoto, fallback: '/images/warehouse/loading-bay-enhanced.webp' })
+  const rackingImage = '/images/warehouse/racking-enhanced.webp'
   const containerPhoto = getContainerPhotos(container)[0]
 
   return (
@@ -92,7 +92,7 @@ export async function HomePage() {
         <div className="photo-story__copy">
           <p className="eyebrow"><span className="eyebrow__dot" />СКЛАДСКОЙ ТЕРМИНАЛ</p>
           <h2>Показываем объект таким, какой он есть.</h2>
-          <p>Фотографии складского направления взяты из презентации компании. Параметры зон, площадь, температурные условия и режим работы появятся после проверки и публикации сотрудником.</p>
+          <p>На фото — складская погрузочная зона и стеллажи. Параметры зон, площадь, температурные условия и режим работы появятся после проверки и публикации сотрудником.</p>
           <Link className="inline-link" href="/terminals/warehouse">О складском терминале <span aria-hidden="true">→</span></Link>
         </div>
         <div className="photo-story__index">ФОТО / 01</div>
