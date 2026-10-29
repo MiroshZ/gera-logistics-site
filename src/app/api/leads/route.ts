@@ -44,7 +44,7 @@ export async function POST(request: NextRequest) {
     }
   }
 
-  const client = (request.headers.get('x-forwarded-for') || '').split(',')[0]?.trim() || 'local-client'
+  const client = request.headers.get('x-real-ip')?.trim() || 'local-client'
   if (!limitClient(client, Date.now())) return NextResponse.json({ error: 'Слишком много попыток. Попробуйте позже.' }, { status: 429 })
 
   let body: Record<string, unknown>
