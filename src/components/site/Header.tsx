@@ -1,5 +1,6 @@
 import Link from 'next/link'
 import { Brand } from '@/components/site/Brand'
+import { MobileNav } from '@/components/site/MobileNav'
 
 const links = [
   { href: '/terminals', label: 'Терминалы' },
@@ -22,13 +23,7 @@ export function Header() {
       <Link className="header-cta" href="/contacts#request">
         Оставить заявку <span aria-hidden="true">↗</span>
       </Link>
-      <details className="mobile-nav">
-        <summary aria-label="Открыть меню"><span className="menu-icon" aria-hidden="true"><i /><i /></span></summary>
-        <nav aria-label="Мобильная навигация">
-          {links.map((link) => <Link key={link.href} href={link.href}>{link.label}</Link>)}
-          <Link className="mobile-nav__cta" href="/contacts#request">Оставить заявку <span aria-hidden="true">↗</span></Link>
-        </nav>
-      </details>
+      <MobileNav links={links} />
     </header>
   )
 }
