@@ -8,7 +8,7 @@ export function PageIntro({ page, action = true }: { page: PageContent; action?:
         <p className="eyebrow"><span className="eyebrow__dot" />{page.eyebrow || 'ООО «ГЕРА» · ТЕРМИНАЛЫ И ПЕРЕВОЗКИ'}</p>
         <h1>{page.heroTitle || page.title}</h1>
         {page.intro ? <p className="page-intro__lead">{page.intro}</p> : null}
-        {action ? <Link className="button button--dark" href="/ru/contacts#request">Обсудить задачу <span aria-hidden="true">↗</span></Link> : null}
+        {action ? <Link className="button button--dark" href="/contacts#request">Обсудить задачу <span aria-hidden="true">↗</span></Link> : null}
       </div>
       <div className="page-intro__aside" aria-hidden="true">
         <span className="page-intro__aside-index">ГЕРА / 01</span>

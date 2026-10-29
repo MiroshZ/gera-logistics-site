@@ -15,25 +15,25 @@ export function Footer({ settings }: { settings: SiteSettingsRecord }) {
     <footer className="site-footer">
       <div className="footer-top">
         <div className="footer-brand">
-          <Link className="brand brand--light" href="/ru" aria-label="GERA — на главную">
+          <Link className="brand brand--light" href="/" aria-label="GERA — на главную">
             <Brand />
           </Link>
           <p>{settings.footerNote || 'Складской терминал, контейнерный терминал и автоперевозки.'}</p>
         </div>
         <div className="footer-links">
           <span className="footer-label">Направления</span>
-          <Link href="/ru/terminals/warehouse">Складской терминал</Link>
-          <Link href="/ru/terminals/container">Контейнерный терминал</Link>
-          <Link href="/ru/transport">Автоперевозки</Link>
+          <Link href="/terminals/warehouse">Складской терминал</Link>
+          <Link href="/terminals/container">Контейнерный терминал</Link>
+          <Link href="/transport">Автоперевозки</Link>
         </div>
         <div className="footer-links">
           <span className="footer-label">Компания</span>
-          <Link href="/ru/about">О компании</Link>
-          <Link href="/ru/fleet">Автопарк</Link>
-          <Link href="/ru/contacts">Контакты</Link>
-          <Link href="/ru/privacy">Политика обработки данных</Link>
-          <Link href="/ru/consent">Согласие на обработку данных</Link>
-          <Link href="/ru/terms">Использование сайта</Link>
+          <Link href="/about">О компании</Link>
+          <Link href="/fleet">Автопарк</Link>
+          <Link href="/contacts">Контакты</Link>
+          <Link href="/privacy">Политика обработки данных</Link>
+          <Link href="/consent">Согласие на обработку данных</Link>
+          <Link href="/terms">Использование сайта</Link>
         </div>
         <div className="footer-contact">
           <span className="footer-label">Связаться</span>
@@ -41,7 +41,7 @@ export function Footer({ settings }: { settings: SiteSettingsRecord }) {
           {generalPhone ? <div className="footer-contact__phone"><span>Общий телефон</span><a href={`tel:${generalPhone.replace(/[^+\d]/g, '')}`}>{generalPhone}</a></div> : null}
           {settings.publicEmail ? <a href={`mailto:${settings.publicEmail}`}>{settings.publicEmail}</a> : null}
           {settings.additionalEmail ? <a href={`mailto:${settings.additionalEmail}`}>{settings.additionalEmail}</a> : null}
-          <Link className="footer-contact__link" href="/ru/contacts#request">Написать нам <span aria-hidden="true">↗</span></Link>
+          <Link className="footer-contact__link" href="/contacts#request">Написать нам <span aria-hidden="true">↗</span></Link>
         </div>
       </div>
       <div className="footer-bottom">

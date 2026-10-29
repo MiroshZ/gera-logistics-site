@@ -10,7 +10,7 @@ const choices = [
 
 type Service = (typeof choices)[number]['value']
 
-export function LeadForm({ defaultServices = [], sourcePage = '/ru/contacts' }: { defaultServices?: Service[]; sourcePage?: string }) {
+export function LeadForm({ defaultServices = [], sourcePage = '/contacts' }: { defaultServices?: Service[]; sourcePage?: string }) {
   const [services, setServices] = useState<Service[]>(defaultServices)
   const [status, setStatus] = useState<'idle' | 'sending' | 'sent' | 'error'>('idle')
   const [message, setMessage] = useState('')
@@ -120,8 +120,8 @@ export function LeadForm({ defaultServices = [], sourcePage = '/ru/contacts' }: 
             ) : null}
             <label className="field field--wide"><span>Коротко опишите задачу <b>*</b></span><textarea name="description" required minLength={8} maxLength={3000} rows={4} placeholder="Что нужно перевезти, принять, обработать или хранить?" /></label>
             <label className="honeypot" aria-hidden="true">Не заполняйте это поле<input name="website" tabIndex={-1} autoComplete="off" /></label>
-            <label className="consent"><input name="consentAccepted" type="checkbox" value="true" required /><span>Даю ООО «ГЕРА» согласие на обработку моих персональных данных для ответа на заявку. <a href="/ru/consent" target="_blank" rel="noopener noreferrer">Прочитать текст согласия ↗</a></span></label>
-            <p className="form-privacy-link">Как обрабатываются данные: <a href="/ru/privacy" target="_blank" rel="noopener noreferrer">Политика обработки персональных данных ↗</a></p>
+            <label className="consent"><input name="consentAccepted" type="checkbox" value="true" required /><span>Даю ООО «ГЕРА» согласие на обработку моих персональных данных для ответа на заявку. <a href="/consent" target="_blank" rel="noopener noreferrer">Прочитать текст согласия ↗</a></span></label>
+            <p className="form-privacy-link">Как обрабатываются данные: <a href="/privacy" target="_blank" rel="noopener noreferrer">Политика обработки персональных данных ↗</a></p>
             {status === 'error' ? <p className="form-error" role="alert">{message}</p> : null}
             <div className="form-submit-row">
               <button className="button button--accent" type="submit" disabled={status === 'sending' || services.length === 0}>

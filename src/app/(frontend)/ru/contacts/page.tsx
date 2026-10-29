@@ -51,8 +51,8 @@ export default async function ContactsPage() {
           </div>)}
         </dl>
       </section> : null}
-      <LeadForm defaultServices={[]} sourcePage="/ru/contacts" />
-      <p className="contact-privacy-note">При отправке заявки действует <Link href="/ru/consent">согласие на обработку персональных данных</Link>. Порядок работы с ними описан в <Link href="/ru/privacy">Политике обработки персональных данных</Link>.</p>
+      <LeadForm defaultServices={[]} sourcePage="/contacts" />
+      <p className="contact-privacy-note">При отправке заявки действует <Link href="/consent">согласие на обработку персональных данных</Link>. Порядок работы с ними описан в <Link href="/privacy">Политике обработки персональных данных</Link>.</p>
     </main>
   )
 }

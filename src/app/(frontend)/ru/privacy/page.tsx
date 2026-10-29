@@ -9,7 +9,7 @@ export default async function PrivacyPage() {
   const operator = getLegalOperator(await getSiteSettings())
 
   return (
-    <LegalShell current="/ru/privacy" title="Политика обработки персональных данных" lead="Как ООО «ГЕРА» получает, использует и защищает данные посетителей сайта.">
+    <LegalShell current="/privacy" title="Политика обработки персональных данных" lead="Как ООО «ГЕРА» получает, использует и защищает данные посетителей сайта.">
       <section>
         <h2>1. Оператор и область действия</h2>
         <p>Оператор персональных данных — {operator.name}, ИНН {operator.inn}, ОГРН {operator.ogrn}. Адрес: {operator.address}. Для вопросов об обработке данных и обращений субъектов используйте <a href={`mailto:${operator.email}`}>{operator.email}</a>.</p>
@@ -46,7 +46,7 @@ export default async function PrivacyPage() {
       <section>
         <h2>7. Права посетителя и обращения</h2>
         <p>Вы можете запросить сведения об обработке своих данных, их уточнение или удаление, потребовать прекратить обработку и отозвать согласие. Направьте обращение на <a href={`mailto:${operator.email}`}>{operator.email}</a> или по адресу оператора, указанному выше. Для защиты данных другого лица компания вправе запросить сведения, позволяющие подтвердить, что обращение относится именно к вам. Ответ и дальнейшие действия выполняются в сроки, предусмотренные законом.</p>
-        <p>Полный <Link href="/ru/consent">текст согласия</Link> и <Link href="/ru/terms">условия использования сайта</Link> опубликованы отдельно.</p>
+        <p>Полный <Link href="/consent">текст согласия</Link> и <Link href="/terms">условия использования сайта</Link> опубликованы отдельно.</p>
       </section>
       <section className="legal-sources">
         <h2>Правовая основа</h2>

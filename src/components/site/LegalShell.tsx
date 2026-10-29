@@ -3,9 +3,9 @@ import type { ReactNode } from 'react'
 import { LEGAL_REVISION, LEGAL_REVISION_LABEL } from '@/lib/legal'
 
 const documents = [
-  { href: '/ru/privacy', label: 'Политика обработки данных' },
-  { href: '/ru/consent', label: 'Согласие на обработку данных' },
-  { href: '/ru/terms', label: 'Использование сайта' },
+  { href: '/privacy', label: 'Политика обработки данных' },
+  { href: '/consent', label: 'Согласие на обработку данных' },
+  { href: '/terms', label: 'Использование сайта' },
 ] as const
 
 export function LegalShell({ current, title, lead, children }: { current: string; title: string; lead: string; children: ReactNode }) {

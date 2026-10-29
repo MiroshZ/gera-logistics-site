@@ -1,5 +1,8 @@
-import { redirect } from 'next/navigation'
+import { HomePage } from '@/components/site/HomePage'
+import { SiteLayout } from '@/components/site/SiteLayout'
+
+export const dynamic = 'force-dynamic'
 
 export default function RootPage() {
-  redirect('/ru')
+  return <SiteLayout><HomePage /></SiteLayout>
 }

@@ -106,7 +106,7 @@ export async function POST(request: NextRequest) {
       description,
       consentAccepted: true,
       consentVersion: CONSENT_VERSION,
-      sourcePage: text(body.sourcePage, 180) || '/ru/contacts',
+      sourcePage: text(body.sourcePage, 180) || '/contacts',
       locale: 'ru',
       notificationStatus: 'pending',
       notificationAttempts: 0,
