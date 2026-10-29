@@ -32,8 +32,7 @@
 - `src/app/(frontend)/ru` — публичные страницы сайта.
 - `src/collections` и `src/globals` — контент и права Payload CMS.
 - `src/app/api` — приём заявок, тест почты и повторная отправка уведомлений.
-- `public/images/warehouse` — оптимизированные фотографии из презентации компании.
-- `ПЛАН_САЙТА.md` — исходный план проекта.
+- `public/images/warehouse` — фотографии складского терминала.
 
 `npm run dev` запускает только Next.js, `npm run db:up` поднимает базу, `npm run seed` создаёт начальный контент, `npm run build` собирает приложение.
 
