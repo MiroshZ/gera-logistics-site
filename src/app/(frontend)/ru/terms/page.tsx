@@ -2,8 +2,13 @@ import Link from 'next/link'
 import { LegalShell } from '@/components/site/LegalShell'
 import { getSiteSettings } from '@/lib/content'
 import { getLegalOperator } from '@/lib/legal'
+import { createPageMetadata } from '@/lib/seo'
 
-export const metadata = { title: 'Условия использования сайта | ГЕРА' }
+export const metadata = createPageMetadata({
+  title: 'Условия использования сайта',
+  description: 'Условия использования сайта ООО «ГЕРА», его материалов и формы обратной связи.',
+  path: '/terms',
+})
 
 export default async function TermsPage() {
   const operator = getLegalOperator(await getSiteSettings())

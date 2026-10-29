@@ -3,8 +3,14 @@ import { PageIntro } from '@/components/site/PageIntro'
 import { LeadForm } from '@/components/site/LeadForm'
 import { getContainerSpecs, getPage, getTerminal } from '@/lib/content'
 import { getContainerPhotos } from '@/lib/terminal-photos'
+import { createPageMetadata } from '@/lib/seo'
 
 export const dynamic = 'force-dynamic'
+export const metadata = createPageMetadata({
+  title: 'Контейнерный терминал',
+  description: 'Отдельный контейнерный терминал ООО «ГЕРА». Возможности, операции и условия подтверждаются сотрудником под параметры запроса.',
+  path: '/terminals/container',
+})
 
 export default async function ContainerTerminalPage() {
   const [page, terminal] = await Promise.all([getPage('container'), getTerminal('container')])

@@ -2,8 +2,14 @@ import Link from 'next/link'
 import { PageIntro } from '@/components/site/PageIntro'
 import { LeadForm } from '@/components/site/LeadForm'
 import { getPage, getPublicTariffs, getRoutes, getServices } from '@/lib/content'
+import { createPageMetadata } from '@/lib/seo'
 
 export const dynamic = 'force-dynamic'
+export const metadata = createPageMetadata({
+  title: 'Автомобильные грузоперевозки',
+  description: 'Автомобильные грузоперевозки ООО «ГЕРА» на собственных седельных тягачах. Направление, сроки и условия подтвердит менеджер.',
+  path: '/transport',
+})
 
 export default async function TransportPage() {
   const [page, routes, services, tariffs] = await Promise.all([getPage('transport'), getRoutes(), getServices('transport'), getPublicTariffs('transport')])

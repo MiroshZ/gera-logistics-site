@@ -2,8 +2,14 @@ import Link from 'next/link'
 import { PageIntro } from '@/components/site/PageIntro'
 import { LeadForm } from '@/components/site/LeadForm'
 import { getPage, getPublicTariffs, getServices } from '@/lib/content'
+import { createPageMetadata } from '@/lib/seo'
 
 export const dynamic = 'force-dynamic'
+export const metadata = createPageMetadata({
+  title: 'Складские услуги',
+  description: 'Услуги складского терминала ООО «ГЕРА»: доступные работы и опубликованные тарифы. Актуальные условия можно запросить с учётом параметров груза.',
+  path: '/services',
+})
 
 const money = new Intl.NumberFormat('ru-RU', { maximumFractionDigits: 2 })
 

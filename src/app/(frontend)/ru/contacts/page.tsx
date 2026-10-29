@@ -2,8 +2,14 @@ import Link from 'next/link'
 import { PageIntro } from '@/components/site/PageIntro'
 import { LeadForm } from '@/components/site/LeadForm'
 import { getPage, getSiteSettings, getTerminals } from '@/lib/content'
+import { createPageMetadata } from '@/lib/seo'
 
 export const dynamic = 'force-dynamic'
+export const metadata = createPageMetadata({
+  title: 'Контакты и адреса терминалов',
+  description: 'Контакты ООО «ГЕРА», телефоны и адреса терминалов, подтверждённые компанией. Оставьте заявку, чтобы обсудить условия услуги.',
+  path: '/contacts',
+})
 
 export default async function ContactsPage() {
   const [page, settings, terminals] = await Promise.all([getPage('contacts'), getSiteSettings(), getTerminals()])

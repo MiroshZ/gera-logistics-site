@@ -2,8 +2,13 @@ import Link from 'next/link'
 import { LegalShell } from '@/components/site/LegalShell'
 import { getSiteSettings } from '@/lib/content'
 import { getLegalOperator } from '@/lib/legal'
+import { createPageMetadata } from '@/lib/seo'
 
-export const metadata = { title: 'Политика обработки персональных данных | ГЕРА' }
+export const metadata = createPageMetadata({
+  title: 'Политика обработки персональных данных',
+  description: 'Политика ООО «ГЕРА» о получении, использовании, хранении и защите данных посетителей сайта.',
+  path: '/privacy',
+})
 
 export default async function PrivacyPage() {
   const operator = getLegalOperator(await getSiteSettings())

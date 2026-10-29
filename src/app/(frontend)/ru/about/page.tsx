@@ -1,8 +1,14 @@
 import { PageIntro } from '@/components/site/PageIntro'
 import Link from 'next/link'
 import { getPage } from '@/lib/content'
+import { createPageMetadata } from '@/lib/seo'
 
 export const dynamic = 'force-dynamic'
+export const metadata = createPageMetadata({
+  title: 'О компании',
+  description: 'ООО «ГЕРА»: складской терминал, контейнерный терминал и автомобильные грузоперевозки. О направлениях компании и подходе к работе.',
+  path: '/about',
+})
 
 export default async function AboutPage() {
   const page = await getPage('about')

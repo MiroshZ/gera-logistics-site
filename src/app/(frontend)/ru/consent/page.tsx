@@ -2,8 +2,13 @@ import Link from 'next/link'
 import { LegalShell } from '@/components/site/LegalShell'
 import { getSiteSettings } from '@/lib/content'
 import { getLegalOperator } from '@/lib/legal'
+import { createPageMetadata } from '@/lib/seo'
 
-export const metadata = { title: 'Согласие на обработку персональных данных | ГЕРА' }
+export const metadata = createPageMetadata({
+  title: 'Согласие на обработку персональных данных',
+  description: 'Отдельный текст согласия на обработку персональных данных при отправке заявки на сайте ООО «ГЕРА».',
+  path: '/consent',
+})
 
 export default async function ConsentPage() {
   const operator = getLegalOperator(await getSiteSettings())

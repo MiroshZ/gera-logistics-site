@@ -2,8 +2,14 @@ import Image from 'next/image'
 import { PageIntro } from '@/components/site/PageIntro'
 import { LeadForm } from '@/components/site/LeadForm'
 import { getPage, getTerminal, getWarehouseDetails } from '@/lib/content'
+import { createPageMetadata } from '@/lib/seo'
 
 export const dynamic = 'force-dynamic'
+export const metadata = createPageMetadata({
+  title: 'Складской терминал и хранение грузов',
+  description: 'Складской терминал ООО «ГЕРА»: хранение и обработка грузов. Запросите актуальные условия с учётом параметров и задачи по грузу.',
+  path: '/terminals/warehouse',
+})
 
 export default async function WarehousePage() {
   const [page, terminal] = await Promise.all([getPage('warehouse'), getTerminal('warehouse')])

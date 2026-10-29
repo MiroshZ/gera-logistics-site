@@ -3,8 +3,14 @@ import Link from 'next/link'
 import { PageIntro } from '@/components/site/PageIntro'
 import { LeadForm } from '@/components/site/LeadForm'
 import { getFleet, getPage } from '@/lib/content'
+import { createPageMetadata } from '@/lib/seo'
 
 export const dynamic = 'force-dynamic'
+export const metadata = createPageMetadata({
+  title: 'Автопарк для грузоперевозок',
+  description: 'Автопарк ООО «ГЕРА» для автомобильных грузоперевозок. На странице публикуются проверенные категории техники и её характеристики.',
+  path: '/fleet',
+})
 
 function mediaUrl(value: unknown): string | null {
   return typeof value === 'object' && value && 'url' in value && typeof value.url === 'string' ? value.url : null

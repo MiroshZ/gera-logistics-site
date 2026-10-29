@@ -3,8 +3,14 @@ import Image from 'next/image'
 import { PageIntro } from '@/components/site/PageIntro'
 import { getPage, getTerminals } from '@/lib/content'
 import { getContainerPhotos } from '@/lib/terminal-photos'
+import { createPageMetadata } from '@/lib/seo'
 
 export const dynamic = 'force-dynamic'
+export const metadata = createPageMetadata({
+  title: 'Складской и контейнерный терминалы',
+  description: 'Два отдельных объекта ООО «ГЕРА»: складской терминал для хранения и обработки грузов и контейнерный терминал со своими условиями работы.',
+  path: '/terminals',
+})
 
 export default async function TerminalsPage() {
   const [page, terminals] = await Promise.all([getPage('terminals'), getTerminals()])
