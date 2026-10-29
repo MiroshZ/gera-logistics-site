@@ -46,8 +46,8 @@ for (const item of mediaSpecs) {
 
 const containerPhotoSpecs = [
   { alt: 'Ричстакер и площадка контейнерного терминала', file: 'terminal-overview.webp', caption: 'Площадка терминала' },
-  { alt: 'Работа на площадке контейнерного терминала', file: 'workyard.webp', caption: 'Работа на площадке' },
-  { alt: 'Малые погрузчики на территории терминала', file: 'forklifts.webp', caption: 'Погрузчики' },
+  { alt: 'Ричстакер на контейнерном терминале', file: 'reachstacker.webp', caption: 'Ричстакер' },
+  { alt: 'Малые погрузчики на контейнерном терминале', file: 'small-forklifts.webp', caption: 'Погрузчики' },
   { alt: 'Кран на территории терминала', file: 'crane.webp', caption: 'Подъёмная техника' },
 ]
 const containerMediaRecords: { id: number; caption: string }[] = []
