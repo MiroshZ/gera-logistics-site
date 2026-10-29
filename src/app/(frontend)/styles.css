@@ -456,12 +456,12 @@ img { max-width: 100%; }
   body { font-size: 14px; }
   .site-header { min-height: 70px; padding-top: 13px; padding-bottom: 13px; }
   .brand__word { font-size: 23px; }
-  .home-hero { margin: 0 12px; }
-  .home-hero__copy { padding: 37px 23px 29px; }
-  .home-hero h1 { font-size: clamp(39px, 11vw, 56px); }
+  .home-hero { margin: 0; }
+  .home-hero__copy { padding: 37px 18px 29px; }
+  .home-hero h1 { font-size: clamp(32px, 10vw, 52px); }
   .home-hero__lead { margin-top: 17px; font-size: 14px; }
   .home-hero__actions { gap: 16px; margin-top: 22px; }
-  .hero-facts { gap: 8px; margin-top: 31px; }
+  .hero-facts { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px 8px; margin-top: 31px; }
   .hero-facts > div { gap: 6px; }
   .hero-facts span { font-size: 8px; }
   .hero-facts p { font-size: 8px; }
@@ -493,7 +493,9 @@ img { max-width: 100%; }
   .last-cta > div:last-child { max-width: 450px; }
   .footer-top { grid-template-columns: 1fr 1fr; gap: 30px 17px; padding-top: 37px; padding-bottom: 35px; }
   .footer-brand { grid-column: 1 / -1; }
-  .footer-contact { grid-column: auto; }
+  .footer-contact { grid-column: auto; min-width: 0; }
+  .footer-links, .footer-contact { min-width: 0; }
+  .footer-links a, .footer-contact a { overflow-wrap: anywhere; }
   .footer-bottom { flex-wrap: wrap; justify-content: flex-start; gap: 8px 17px; font-size: 8px; }
   .page-intro { grid-template-columns: 1fr; gap: 15px; padding: 57px 0 43px; }
   .page-intro h1 { font-size: clamp(39px, 10vw, 57px); }
@@ -535,7 +537,9 @@ img { max-width: 100%; }
   .transport-intro { grid-template-columns: 1fr; gap: 28px; padding: 42px 0; }
   .transport-intro__graphic { min-height: 250px; padding: 20px; }
   .transport-intro__copy h2 { font-size: 34px; }
-  .route-list article { grid-template-columns: 1fr 22px 1fr; gap: 6px; font-size: 12px; }
+  .route-list article { grid-template-columns: minmax(0, 1fr) 22px minmax(0, 1fr); gap: 6px; font-size: 12px; }
+  .route-list article > * { min-width: 0; }
+  .route-list article > span:not(.route-arrow) { overflow-wrap: anywhere; }
   .route-list small { grid-column: 1 / -1; }
   .route-list p { font-size: 10px; }
   .fleet-grid { gap: 11px; padding: 37px 0; }
@@ -568,6 +572,7 @@ img { max-width: 100%; }
   .consent { font-size: 8px; }
   .form-success { grid-template-columns: 36px 1fr; gap: 11px; }
   .form-success__check { width: 32px; height: 32px; }
+  .field input, .field textarea, .field select { font-size: 16px; }
 }
 
 @media (prefers-reduced-motion: reduce) {
