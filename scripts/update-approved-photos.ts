@@ -35,16 +35,16 @@ function toPhotoInput(photo: NonNullable<Terminal['photos']>[number]) {
   }
 }
 
-async function replacePhotoAt(
+async function replacePhotosAt(
   terminal: Terminal,
-  index: number,
-  imageId: number,
-  caption: string,
+  replacements: { index: number; imageId: number; caption: string }[],
 ) {
   const photos = (terminal.photos ?? []).map(toPhotoInput)
 
-  while (photos.length <= index) photos.push({ image: imageId, caption })
-  photos[index] = { ...photos[index], image: imageId, caption }
+  for (const { index, imageId, caption } of replacements) {
+    while (photos.length <= index) photos.push({ image: imageId, caption })
+    photos[index] = { ...photos[index], image: imageId, caption }
+  }
 
   await payload.update({
     collection: 'terminals',
@@ -82,15 +82,19 @@ const warehouse = terminals.docs.find((terminal) => terminal.slug === 'warehouse
 const container = terminals.docs.find((terminal) => terminal.slug === 'container')
 
 if (warehouse) {
-  await replacePhotoAt(warehouse, 0, loadingBayId, 'Погрузочная зона')
-  await replacePhotoAt(warehouse, 1, rackingId, 'Стеллажи')
+  await replacePhotosAt(warehouse, [
+    { index: 0, imageId: loadingBayId, caption: 'Погрузочная зона' },
+    { index: 1, imageId: rackingId, caption: 'Стеллажи' },
+  ])
   console.info('Обновлены фото погрузочной зоны и стеллажей.')
 } else {
   console.warn('Складской терминал не найден; его фото не обновлены.')
 }
 
 if (container) {
-  await replacePhotoAt(container, 0, containerOverviewId, 'Площадка терминала')
+  await replacePhotosAt(container, [
+    { index: 0, imageId: containerOverviewId, caption: 'Площадка терминала' },
+  ])
   console.info('Обновлено фото общего вида контейнерного терминала.')
 } else {
   console.warn('Контейнерный терминал не найден; его фото не обновлено.')
