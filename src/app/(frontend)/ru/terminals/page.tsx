@@ -20,7 +20,7 @@ export default async function TerminalsPage() {
           <div className="terminal-feature__content"><span className="direction-card__index">ОБЪЕКТ / 01</span><h2>{warehouse?.name || 'Складской терминал'}</h2><p>{warehouse?.description || 'Складское хранение и обработка грузов. Параметры объекта публикуются после проверки.'}</p><Link className="button button--dark" href="/terminals/warehouse">Подробнее <span aria-hidden="true">↗</span></Link></div>
         </article>
         <article className="terminal-feature terminal-feature--container">
-          <div className="terminal-feature__image"><Image src={containerPhoto.src} alt={containerPhoto.alt} fill sizes="(max-width: 760px) 100vw, 50vw" /></div>
+          <div className="terminal-feature__image"><Image className="container-photo-cover" src={containerPhoto.src} alt={containerPhoto.alt} fill sizes="(max-width: 760px) 100vw, 50vw" /></div>
           <div className="terminal-feature__content"><span className="direction-card__index">ОБЪЕКТ / 02</span><h2>{container?.name || 'Контейнерный терминал'}</h2><p>{container?.description || 'Отдельный объект, предназначенный только для работы с контейнерами. Условия и операции уточняются по запросу.'}</p><Link className="button button--dark" href="/terminals/container">Подробнее <span aria-hidden="true">↗</span></Link></div>
         </article>
       </section>

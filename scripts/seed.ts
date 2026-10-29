@@ -45,7 +45,6 @@ for (const item of mediaSpecs) {
 }
 
 const containerPhotoSpecs = [
-  { alt: 'Площадка контейнерного терминала', file: 'terminal-overview-enhanced.webp', caption: 'Площадка терминала' },
   { alt: 'Ричстакер на контейнерном терминале', file: 'reachstacker.webp', caption: 'Ричстакер' },
   { alt: 'Малые погрузчики на контейнерном терминале', file: 'small-forklifts.webp', caption: 'Погрузчики' },
   { alt: 'Кран на территории терминала', file: 'crane.webp', caption: 'Подъёмная техника' },

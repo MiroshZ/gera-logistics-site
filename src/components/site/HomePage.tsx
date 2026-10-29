@@ -58,7 +58,7 @@ export async function HomePage() {
             </div>
           </Link>
           <Link className="direction-card direction-card--container" href="/terminals/container">
-            <div className="direction-card__photo"><Image src={containerPhoto.src} alt={containerPhoto.alt} fill sizes="(max-width: 760px) 100vw, 33vw" /></div>
+            <div className="direction-card__photo"><Image className="container-photo-cover" src={containerPhoto.src} alt={containerPhoto.alt} fill sizes="(max-width: 760px) 100vw, 33vw" /></div>
             <div className="direction-card__body">
               <span className="direction-card__index">02 / ОБЪЕКТ</span>
               <h3>Контейнерный<br />терминал</h3>

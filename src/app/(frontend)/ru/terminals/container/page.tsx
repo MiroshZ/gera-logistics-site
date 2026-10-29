@@ -16,7 +16,7 @@ export default async function ContainerTerminalPage() {
     <main className="site-page inner-page">
       <PageIntro page={page} />
       <section className="container-page-hero">
-        <div className="container-page-hero__photo"><Image src={heroPhoto.src} alt={heroPhoto.alt} fill sizes="(max-width: 760px) 100vw, 50vw" /></div>
+        <div className="container-page-hero__photo"><Image className="container-photo-cover" src={heroPhoto.src} alt={heroPhoto.alt} fill sizes="(max-width: 760px) 100vw, 50vw" /></div>
         <div className="container-page-hero__copy"><p className="eyebrow"><span className="eyebrow__dot" />ОТДЕЛЬНЫЙ ОБЪЕКТ</p><h2>{terminal?.name || 'Контейнерный терминал'}</h2><p>{terminal?.description || 'Самостоятельный терминал компании, предназначенный только для работы с контейнерами.'}</p></div>
       </section>
       {galleryPhotos.length ? <section className="gallery-section"><div className="section-heading section-heading--split"><div><p className="eyebrow"><span className="eyebrow__dot" />ФОТОГРАФИИ</p><h2>Площадка и техника<br />терминала.</h2></div><p>Реальные снимки объекта: общий вид, рабочие зоны и техника на территории.</p></div><div className="container-gallery">{galleryPhotos.map((photo, index) => <figure className={`container-gallery__item container-gallery__item--${index + 1}`} key={`${photo.src}-${index}`}><div><Image src={photo.src} alt={photo.alt} fill sizes="(max-width: 760px) 100vw, 40vw" /></div><figcaption><span>{photo.caption}</span><span>{String(index + 1).padStart(2, '0')}</span></figcaption></figure>)}</div></section> : null}

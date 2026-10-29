@@ -55,7 +55,7 @@ async function replacePhotosAt(
   })
 }
 
-const [loadingBayId, rackingId, containerOverviewId] = await Promise.all([
+const [loadingBayId, rackingId, reachstackerId, forkliftsId, craneId] = await Promise.all([
   getOrCreateMedia(
     'Погрузочная зона складского терминала — обновлённое фото',
     'warehouse/loading-bay-enhanced.webp',
@@ -64,10 +64,9 @@ const [loadingBayId, rackingId, containerOverviewId] = await Promise.all([
     'Стеллажи складского терминала — обновлённое фото',
     'warehouse/racking-enhanced.webp',
   ),
-  getOrCreateMedia(
-    'Площадка контейнерного терминала',
-    'container/terminal-overview-enhanced.webp',
-  ),
+  getOrCreateMedia('Ричстакер на контейнерном терминале', 'container/reachstacker.webp'),
+  getOrCreateMedia('Малые погрузчики на контейнерном терминале', 'container/small-forklifts.webp'),
+  getOrCreateMedia('Кран на территории терминала', 'container/crane.webp'),
 ])
 
 const terminals = await payload.find({
@@ -92,10 +91,20 @@ if (warehouse) {
 }
 
 if (container) {
-  await replacePhotosAt(container, [
-    { index: 0, imageId: containerOverviewId, caption: 'Площадка терминала' },
-  ])
-  console.info('Обновлено фото общего вида контейнерного терминала.')
+  await payload.update({
+    collection: 'terminals',
+    id: container.id,
+    locale: 'ru',
+    overrideAccess: true,
+    data: {
+      photos: [
+        { image: reachstackerId, caption: 'Ричстакер' },
+        { image: forkliftsId, caption: 'Погрузчики' },
+        { image: craneId, caption: 'Подъёмная техника' },
+      ],
+    },
+  })
+  console.info('Обновлены фото ричстакера, погрузчиков и подъёмной техники.')
 } else {
   console.warn('Контейнерный терминал не найден; его фото не обновлено.')
 }

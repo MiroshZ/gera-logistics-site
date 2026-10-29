@@ -130,6 +130,7 @@ img { max-width: 100%; }
 .direction-card:hover { transform: translateY(-7px); box-shadow: 0 20px 36px rgba(0,0,0,.14); }
 .direction-card__photo { position: relative; height: 222px; overflow: hidden; background: #e6e6e6; }
 .direction-card__photo img { object-fit: cover; transition: transform .5s ease; }
+.container-photo-cover { object-position: center 43%; }
 .direction-card:hover .direction-card__photo img { transform: scale(1.045); }
 .direction-card__body { display: flex; flex: 1; flex-direction: column; align-items: flex-start; padding: 25px 27px 28px; }
 .direction-card__index { color: var(--ink-muted); font-size: 9px; font-weight: 800; letter-spacing: .15em; }
